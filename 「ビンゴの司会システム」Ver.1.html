@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Web D&P 6-1</title>
+<script>
+    let historyList = [];
+
+    function getRandomInt() {
+        let min = 1;
+        let max = 75;
+        let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+
+        while (historyList.includes(randomNumber)) {
+            randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        document.getElementById('Bingo').innerHTML = randomNumber;
+
+        historyList.push(randomNumber);
+        updateHistory();
+    }
+
+    function updateHistory() {
+        let historyDiv = document.getElementById('History');
+        historyDiv.innerHTML = ""; 
+
+        for (let i = 0; i < historyList.length; i++) {
+            historyDiv.innerHTML += historyList[i] + "<br>";
+        }
+    }
+</script>
+</head>
+<body>
+    <input type="button" onclick="getRandomInt()" value="Bingo!">
+    <div id="Bingo" style="font-size: 200px; font-family: Arial, sans-serif; color: red;"></div>
+    <br><br>
+    履歴<br>
+    <div id="History"></div> 
+</body>
+</html>
